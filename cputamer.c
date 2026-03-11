@@ -317,8 +317,3 @@ int main(){
      else {//如果返回了NULL就退出循环
         printf("Exiting...\n");
         break;
-    }
-  }
-  return 0;
-}
-  
