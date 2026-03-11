@@ -46,7 +46,7 @@ int get_input(void){
     return 1;
 }
 
-int cpu_set_safety_checker(int* list){//ensure not all cpus are disabled
+int cpu_exec_set_safety_checker(int* list){//ensure not all cpus are disabled
     int sum=0;
     if(list[0]!=1) return 1;// You cannot shut down cpu0
     for(int i=0;i<LOGICAL_CPU_COUNT;i++){
@@ -97,7 +97,7 @@ int get_commands(){//helper function for parse_input()
       commands_count=0;
      //第一次分割
       char *token = strtok(buffer," \t");//空格 或TAB（制表符）
-      //循环获取所有令牌and save them to commands[]    i.e: cpu tamer set 2c4t
+      //循环获取所有令牌and save them to commands[]    i.e: cpu tamer exec_set 2c4t
       while(token!=NULL && commands_count<COMMAND_COUNT-1){
         commands[commands_count]=token;
         commands_count++;
@@ -111,7 +111,7 @@ int get_commands(){//helper function for parse_input()
       return 0;//parsed all commands and saved to commands[], return 0
 }
 
-char *cmdList[]={"set","q","smt",NULL};
+char *cmdList[]={"exec_set","q","smt",NULL};
 char *matched_first_cmd=NULL;
 
 int match_first_cmd(){//save the first matched command to **matched_first_cmd**
@@ -133,7 +133,7 @@ int core_thread_checker(int core, int thread) {
 }
 
 
-int get_set_args(int* core, int* thread){
+int get_exec_set_args(int* core, int* thread){
   if(strcmp(cmdList[1], "min")==0){
     *core=1, *thread=2;
     return 0;
@@ -148,32 +148,58 @@ int get_set_args(int* core, int* thread){
   return 1;
 }
 
-void get_new_cpu_state(int* cpu_state_list, int core, int thread){//assuming intel cpu layout i.e. physical cpu0-3, vice-thread cpu4-7
+void get_new_cpu_state(int* list, int core, int thread){//assuming intel cpu layout i.e. primary threads cpu0-3, secondary thread cpu4-7
+  list[0]=1;//cpu0 must be active
+  int active_primary_thread_count=core, active_secondary_thread_count=thread-core;
+  for(int i=1;i<LOGICAL_CPU_COUNT;i++){
+    list[i]=0;
+  }
+  for(int i=0;i<active_primary_thread_count;i++){//activate primary threads
+    int primary_thread_index=i;
+    list[primary_thread_index]=1;
+  }
+  for(int i=0;i<active_secondary_thread_count;i++){//activate secondary threads
+    int secondary_thread_index=i+PHYSICAL_CPU_COUNT;
+    list[secondary_thread_index]=1;
+  }
+}
 
-  for(int i=0;i<LOGICAL_CPU_COUNT;i++){
-    cpu_state_list[i]=0;
+int exec_cpu_state(int* list){
+  if(cpu_exec_set_safety_checker(new_cpu_state)){//again, safety checking
+    printf("Illegal cpu state list, cpu state not changed");
+    return 1;//cpu state list is illegal
   }
 
+  for(int i=0;i<LOGICAL_CPU_COUNT;i++){
+    char command[64];
+    snprintf(command, sizeof(command), 
+          "echo %d | sudo tee /sys/devices/system/cpu/cpu%d/online", 
+          list[i], i);
+    execute_shell_command(command);
+  }
+  return 0;
 }
 
 int exec_set(int core, int thread){
-
+  get_new_cpu_state(new_cpu_state, core, thread);
+  if(exec_cpu_state(new_cpu_state)) return 1;
+  return 0;
 }
 
 int handle_first_cmd(){
   if(strcmp(matched_first_cmd, "q")==0){//quit cputamer, return exit code
     return -1;
   }
-  if(strcmp(matched_first_cmd, "set")==0){
+  if(strcmp(matched_first_cmd, "exec_set")==0){
     int core=PHYSICAL_CPU_COUNT, thread=LOGICAL_CPU_COUNT;
-    if(get_set_args(&core, &thread)){
-      printf("illegal argument for command: set");
+    if(get_exec_set_args(&core, &thread)){
+      printf("illegal argument for command: exec_set");
       return 1;//error
     }
     exec_set(core, thread);
   }
   if(strcmp(matched_first_cmd, "smt")==0){
-
+    exec_SMT(cmdList[1]);
   }
 
 }
@@ -203,7 +229,7 @@ void print_greetings(){
 
 //main()
 int main(){
-  // setenv("PATH", "/bin:/usr/bin:/usr/local/bin", 1);
+  // exec_setenv("PATH", "/bin:/usr/bin:/usr/local/bin", 1);
   // char buffer[256];
   //我们的代码
   while (1) {
