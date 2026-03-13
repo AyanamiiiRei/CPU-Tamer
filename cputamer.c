@@ -235,8 +235,8 @@ int parse_input(){
 
 
 int main(){
-  while(1){
   print_greetings();
+  while(1){
   if(get_input()){
     printf("Input buffer overflow\n");
     continue;
@@ -257,7 +257,7 @@ int main(){
     default:
       ;
   }
-  printf("\n");
+  // printf("\n");
   }
 }
 
