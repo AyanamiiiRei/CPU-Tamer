@@ -1,0 +1,3 @@
+/home/sabu/Repositories/CPU-Tamer/build/CMakeFiles/cputamer.dir
+/home/sabu/Repositories/CPU-Tamer/build/CMakeFiles/edit_cache.dir
+/home/sabu/Repositories/CPU-Tamer/build/CMakeFiles/rebuild_cache.dir

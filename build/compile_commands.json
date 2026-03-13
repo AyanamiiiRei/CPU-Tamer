@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/sabu/Repositories/CPU-Tamer/build",
+  "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/execute.c.o -c /home/sabu/Repositories/CPU-Tamer/src/execute.c",
+  "file": "/home/sabu/Repositories/CPU-Tamer/src/execute.c",
+  "output": "CMakeFiles/cputamer.dir/src/execute.c.o"
+},
+{
+  "directory": "/home/sabu/Repositories/CPU-Tamer/build",
+  "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/input.c.o -c /home/sabu/Repositories/CPU-Tamer/src/input.c",
+  "file": "/home/sabu/Repositories/CPU-Tamer/src/input.c",
+  "output": "CMakeFiles/cputamer.dir/src/input.c.o"
+},
+{
+  "directory": "/home/sabu/Repositories/CPU-Tamer/build",
+  "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/main.c.o -c /home/sabu/Repositories/CPU-Tamer/src/main.c",
+  "file": "/home/sabu/Repositories/CPU-Tamer/src/main.c",
+  "output": "CMakeFiles/cputamer.dir/src/main.c.o"
+},
+{
+  "directory": "/home/sabu/Repositories/CPU-Tamer/build",
+  "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/parser.c.o -c /home/sabu/Repositories/CPU-Tamer/src/parser.c",
+  "file": "/home/sabu/Repositories/CPU-Tamer/src/parser.c",
+  "output": "CMakeFiles/cputamer.dir/src/parser.c.o"
+}
+]
