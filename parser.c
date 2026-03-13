@@ -2,11 +2,15 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include "input.h"
+#include "parser.h"
+#include "execute.h"
+
 #define COMMAND_COUNT 64
 #define LOGICAL_CPU_COUNT 8
 #define PHYSICAL_CPU_COUNT 4
 
-extern char buffer[];
+// extern char buffer[];
 int commands_count=0;
 char *commands[COMMAND_COUNT];
 char *matched_command=NULL;

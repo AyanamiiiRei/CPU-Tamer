@@ -3,14 +3,9 @@
 #include <sys/types.h> // 用于 pid_t 等类型
 #include <sys/wait.h>// 用于 wait() 函数
 
-
-extern void print_greetings(void);
-extern int get_current_cpu_state(void);
-extern int get_input(void);
-extern int parse_input(void);
-extern int handle_first_command(char* first_command, char **commands);
-extern char *matched_command;
-extern char *commands[];
+#include "input.h"
+#include "parser.h"
+#include "execute.h"
 
 int main(){
   print_greetings();

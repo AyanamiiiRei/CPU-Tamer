@@ -5,12 +5,13 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#include "input.h"
+#include "parser.h"
+#include "execute.h"
+
 #define LOGICAL_CPU_COUNT 8
 #define PHYSICAL_CPU_COUNT 4
 #define BUFFER_SIZE 64
-
-extern char *commands[];
-extern char *matched_command;
 
 char greetings[]= "▀▄   ▄▀  ▀▄   ▄▀  ▀▄   ▄▀  ▀▄   ▄▀\n"
                    " █▄▀█ █▄▀█  █▄▀█ █▄▀█  █▄▀█ █▄▀█\n"
