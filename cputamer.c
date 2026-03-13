@@ -151,7 +151,6 @@ int get_set_args(int* core, int* thread, char* argument){
     return 0;
   }
   if(sscanf(argument, "%dc%dt",core,thread)==2){
-    // printf("DEBUG 4c5t");
     if(core_thread_checker(*core, *thread)==0) return 0;
   }
   return 1;
