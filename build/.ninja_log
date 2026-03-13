@@ -1,0 +1,6 @@
+# ninja log v7
+1	34	1773397633587236524	CMakeFiles/cputamer.dir/src/input.c.o	1285f90623d27fa5
+2	40	1773397633587998039	CMakeFiles/cputamer.dir/src/parser.c.o	98d933f180f46eea
+2	71	1773397633587583460	CMakeFiles/cputamer.dir/src/main.c.o	19f7a9248d901194
+1	95	1773397633585394294	CMakeFiles/cputamer.dir/src/execute.c.o	d0e37c1fe396113b
+95	140	1773397633679393470	cputamer	804cad730d51b0d2
