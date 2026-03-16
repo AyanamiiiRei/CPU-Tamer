@@ -8,6 +8,7 @@
 #include "input.h"
 #include "parser.h"
 #include "execute.h"
+#include "system_execution.h"
 
 #define LOGICAL_CPU_COUNT 8
 #define PHYSICAL_CPU_COUNT 4
