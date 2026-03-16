@@ -36,18 +36,18 @@ int get_current_cpu_state(void){
     return 0;
 }
 
-int execute_shell_command(const char *cmd) {
-    pid_t pid = fork();
-    if (pid == 0) {
-        execlp("sh", "sh", "-c", cmd, NULL);
-        exit(1);
-    } else if (pid > 0) {
-        int status;
-        waitpid(pid, &status, 0);
-        return WIFEXITED(status) ? WEXITSTATUS(status) : -1;
-    }
-    return -1;
-}
+// int execute_shell_command(const char *cmd) {
+//     pid_t pid = fork();
+//     if (pid == 0) {
+//         execlp("sh", "sh", "-c", cmd, NULL);
+//         exit(1);
+//     } else if (pid > 0) {
+//         int status;
+//         waitpid(pid, &status, 0);
+//         return WIFEXITED(status) ? WEXITSTATUS(status) : -1;
+//     }
+//     return -1;
+// }
 
 int cpu_set_safety_checker(int* list){//ensure not all cpus are disabled
     int sum=0;
