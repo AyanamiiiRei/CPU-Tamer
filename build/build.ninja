@@ -77,6 +77,13 @@ build CMakeFiles/cputamer.dir/src/parser.c.o: C_COMPILER__cputamer_unscanned_Deb
   OBJECT_DIR = CMakeFiles/cputamer.dir
   OBJECT_FILE_DIR = CMakeFiles/cputamer.dir/src
 
+build CMakeFiles/cputamer.dir/src/system_execution.c.o: C_COMPILER__cputamer_unscanned_Debug /home/sabu/Repositories/CPU-Tamer/src/system_execution.c || cmake_object_order_depends_target_cputamer
+  DEP_FILE = CMakeFiles/cputamer.dir/src/system_execution.c.o.d
+  FLAGS = -g -std=gnu11
+  INCLUDES = -I/home/sabu/Repositories/CPU-Tamer/include
+  OBJECT_DIR = CMakeFiles/cputamer.dir
+  OBJECT_FILE_DIR = CMakeFiles/cputamer.dir/src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target cputamer
@@ -85,7 +92,7 @@ build CMakeFiles/cputamer.dir/src/parser.c.o: C_COMPILER__cputamer_unscanned_Deb
 #############################################
 # Link the executable cputamer
 
-build cputamer: C_EXECUTABLE_LINKER__cputamer_Debug CMakeFiles/cputamer.dir/src/execute.c.o CMakeFiles/cputamer.dir/src/input.c.o CMakeFiles/cputamer.dir/src/main.c.o CMakeFiles/cputamer.dir/src/parser.c.o
+build cputamer: C_EXECUTABLE_LINKER__cputamer_Debug CMakeFiles/cputamer.dir/src/execute.c.o CMakeFiles/cputamer.dir/src/input.c.o CMakeFiles/cputamer.dir/src/main.c.o CMakeFiles/cputamer.dir/src/parser.c.o CMakeFiles/cputamer.dir/src/system_execution.c.o
   DEP_FILE = CMakeFiles/cputamer.dir/link.d
   FLAGS = -g
   LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/cputamer.dir/link.d

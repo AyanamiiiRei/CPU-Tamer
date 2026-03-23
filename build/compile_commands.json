@@ -22,5 +22,11 @@
   "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/parser.c.o -c /home/sabu/Repositories/CPU-Tamer/src/parser.c",
   "file": "/home/sabu/Repositories/CPU-Tamer/src/parser.c",
   "output": "CMakeFiles/cputamer.dir/src/parser.c.o"
+},
+{
+  "directory": "/home/sabu/Repositories/CPU-Tamer/build",
+  "command": "/usr/bin/gcc -I/home/sabu/Repositories/CPU-Tamer/include -g -std=gnu11 -o CMakeFiles/cputamer.dir/src/system_execution.c.o -c /home/sabu/Repositories/CPU-Tamer/src/system_execution.c",
+  "file": "/home/sabu/Repositories/CPU-Tamer/src/system_execution.c",
+  "output": "CMakeFiles/cputamer.dir/src/system_execution.c.o"
 }
 ]
