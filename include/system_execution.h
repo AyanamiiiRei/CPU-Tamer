@@ -11,5 +11,6 @@
 // int match_first_cmd(void);
 // int parse_input(void);
 int execute_shell_command(const char *cmd);
-int toggle_cpu_state(int list[]);
+int toggle_cpu_state(const char *path, int state);
+int toggle_smt(const char *path, char *state);
 #endif

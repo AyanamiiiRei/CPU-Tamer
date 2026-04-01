@@ -19,7 +19,8 @@ char greetings[]= "▀▄   ▄▀  ▀▄   ▄▀  ▀▄   ▄▀  ▀▄   �
                    " █  █ █  █  █  █ █  █  █  █ █  █\n"
                    "▀   ▀▀   ▀▀   ▀▀   ▀▀   ▀▀   ▀▀   ▀\n"
                    "\n"
-                   "  CPU TAMER - Tame your cores, save your battery\n";
+                   "  CPU TAMER - Tame your cores, save your battery\n"
+                   "Reminder: You need to run CPUTamer with root privileges\n";
 
 int current_cpu_state[LOGICAL_CPU_COUNT];
 int new_cpu_state[LOGICAL_CPU_COUNT];
@@ -66,11 +67,17 @@ int exec_SMT(char* args){
     return 0;
   }
   if(strcmp(args,"on")==0){
-    execute_shell_command("echo on | sudo tee /sys/devices/system/cpu/smt/control");
+    // execute_shell_command("echo on | sudo tee /sys/devices/system/cpu/smt/control");
+    if(toggle_smt("/sys/devices/system/cpu/smt/control",  "on")==0){
+      printf("SMT is on\n");
+    }
     return 0;
   }
   if(strcmp(args,"off")==0){
-    execute_shell_command("echo off | sudo tee /sys/devices/system/cpu/smt/control");
+    // execute_shell_command("echo off | sudo tee /sys/devices/system/cpu/smt/control");
+    if(toggle_smt("/sys/devices/system/cpu/smt/control",  "off")==0){
+      printf("SMT is off\n");
+    }
     return 0;
   }
   return 1;
@@ -99,11 +106,13 @@ int exec_cpu_state(int* list){
   }
 
   for(int i=1;i<LOGICAL_CPU_COUNT;i++){
-    char command[64];
-    snprintf(command, sizeof(command), 
-          "echo %d | sudo tee /sys/devices/system/cpu/cpu%d/online", 
-          list[i], i);
-    execute_shell_command(command);
+    char path[64];
+    snprintf(path, sizeof(path), 
+          "/sys/devices/system/cpu/cpu%d/online",i);
+    // execute_shell_command(command);
+    if(toggle_cpu_state(path,list[i])!=0){
+      return 1;
+    }
   }
   return 0;
 }
